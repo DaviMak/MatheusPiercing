@@ -278,6 +278,23 @@ body {
     justify-content: center;
     color: var(--cinza-claro);
     font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-item-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer ou esticar */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.portfolio-item-placeholder span {
+    position: relative;
+    z-index: 0; /* Fica por trás da imagem quando ela carrega */
 }
 
 /* 3. VISAGISMO */
