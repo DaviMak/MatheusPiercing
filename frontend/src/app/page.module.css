@@ -377,6 +377,22 @@
   transform: translateY(-3px);
 }
 
+.footerMap {
+  width: 100%;
+  max-width: 500px;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.footerMap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
 @media (max-width: 600px) {
   .footer {
     padding: 36px 20px 20px;
@@ -390,3 +406,123 @@
     font-size: 10px;
   }
 }
+
+
+/* SOBRE */
+.about {
+  padding: 100px 0;
+  background: var(--color-background);
+}
+
+.aboutContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.aboutImage {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.aboutPhoto {
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50px;
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: var(--color-surface-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+}
+
+.aboutEyebrow {
+  color: var(--color-text-muted);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.aboutText h2 {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.aboutText p {
+  max-width: 480px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+
+.aboutStats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 35px;
+  margin-top: 18px;
+}
+
+.aboutStats div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aboutStats strong {
+  font-family: var(--font-heading);
+  font-size: 27px;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.aboutStats span {
+  color: var(--color-text-muted);
+  font-size: 11px;
+}
+
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  .about {
+    padding: 65px 0;
+  }
+
+  .aboutContent {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .aboutImage {
+    height: 350px;
+  }
+
+  .aboutText h2 {
+    font-size: 32px;
+  }
+
+  .aboutStats {
+    gap: 30px;
+  }
+}
+

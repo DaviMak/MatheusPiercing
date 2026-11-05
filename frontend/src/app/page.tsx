@@ -39,6 +39,8 @@ export default function Home() {
         </div>
       </header>
 
+      
+
       <section className={styles.hero}>
         <div className={`container ${styles.heroContent}`}>
           <div className={styles.heroText}>
@@ -92,11 +94,74 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="sobre" className={styles.section}>
-        <div className="container">
-          <h2>Um cuidado que vai além da estética.</h2>
+      
+      <section id="sobre" className={styles.about}>
+        <div className={`container ${styles.aboutContent}`}>
+
+          <div className={styles.aboutImage}>
+            <div className={styles.aboutImage}>
+              <Image
+                src="/imagens/matheuscruz.jpeg"
+                alt="Matheus Cruz, profissional de piercing"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className={styles.aboutPhoto}
+              />
+            </div>
+          </div>
+
+
+          <div className={styles.aboutText}>
+            <span className={styles.aboutEyebrow}>
+              SOBRE MATHEUS CRUZ
+            </span>
+
+            <h2>
+              Experiência, técnica e personalidade em cada detalhe.
+            </h2>
+
+            <p>
+              Atuando como piercer desde 2018, Matheus Cruz construiu
+              uma trajetória marcada pela dedicação à arte da
+              perfuração e pelo cuidado individualizado.
+            </p>
+
+            <p>
+              Com mais de 20 mil clientes atendidos no Brasil e em
+              outros países, seu trabalho vai além da realização de
+              piercings: cada projeto é pensado para valorizar a
+              anatomia, respeitar a personalidade e proporcionar
+              uma experiência segura e acolhedora.
+            </p>
+
+            <div className={styles.aboutStats}>
+              <div>
+                <strong>Exclusividade</strong>
+                <span>Atendimentos personalizados</span>
+              </div>
+
+              <div>
+                <strong>20 mil+</strong>
+                <span>Clientes atendidos</span>
+              </div>
+
+              <div>
+                <strong>14+</strong>
+                <span>Países alcançados</span>
+              </div>
+
+              <div>
+                <strong>300 mi+</strong>
+                <span>Visualizações</span>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </section>
+
 
       <section
         id="servicos"
@@ -140,6 +205,17 @@ export default function Home() {
     
     <footer className={styles.footer}>
         <div className={`container ${styles.footerContent}`}>
+          <div className={styles.footerMap}>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3600.648086467112!2d-54.58644132460766!3d-25.51678057750667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94f69101e61bd7ef%3A0x3b2115aaed662908!2sMatheus%20Cruz%20-%20Piercing%20Studio!5e0!3m2!1spt-BR!2sbr!4v1793838036355!5m2!1spt-BR!2sbr" 
+              width="350" 
+              height="350" 
+              style={{border:0}} 
+              allowFullScreen
+              loading="lazy" referrerPolicy="strict-origin-when-cross-origin">
+            </iframe>
+          </div>
+
+            
             <p>📍 Av. José Maria de Brito, 1000 — Sala 102 (Anexo à Lumynah Clínica Estética)</p>
             <p>Foz do Iguaçu - PR</p>
             <div className={styles.footerlegal}>
