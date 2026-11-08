@@ -1,6 +1,7 @@
 
 import Image from "next/image";
 import styles from "./page.module.css";
+import ServiceSection from "@/app/components/sections/ServiceSection";
 
 export default function Home() {
   return ( <>
@@ -169,6 +170,7 @@ export default function Home() {
       >
         <div className="container">
           <h2>Nossos serviços</h2>
+          <ServiceSection />
         </div>
       </section>
 

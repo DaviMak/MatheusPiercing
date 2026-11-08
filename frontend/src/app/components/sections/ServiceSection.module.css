@@ -1,0 +1,306 @@
+
+.services {
+  padding: 100px 6%;
+  background: #F7F4ED;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  max-width: 650px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  color: #927344;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.sectionHeader h2 {
+  margin-bottom: 18px;
+  color: #292824;
+  font-family: inherit;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.sectionHeader p {
+  color: #77736C;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.serviceCard {
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #DED7CC;
+  border-radius: 4px;
+  background: #FCFAF6;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.serviceCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(41, 40, 36, 0.09);
+}
+
+.serviceCard:focus-visible,
+.closeButton:focus-visible,
+.modalCta:focus-visible {
+  outline: 2px solid #927344;
+  outline-offset: 4px;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.serviceImage {
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.serviceCard:hover .serviceImage {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: 22px 20px 24px;
+}
+
+.cardContent h3 {
+  margin-bottom: 10px;
+  color: #292824;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.cardContent p {
+  min-height: 48px;
+  margin-bottom: 20px;
+  color: #77736C;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.learnMore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #927344;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Modal */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(25, 24, 22, 0.75);
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 5px;
+  background: #F7F4ED;
+  animation: modalIn 0.25s ease;
+}
+
+.modalImage {
+  position: relative;
+  min-height: 480px;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 55px 45px;
+}
+
+.modalContent h2 {
+  margin-bottom: 20px;
+  color: #292824;
+  font-size: 32px;
+  font-weight: 400;
+}
+
+.modalContent > p {
+  color: #77736C;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.followUp {
+  margin-top: 20px;
+  padding-left: 15px;
+  border-left: 2px solid #B08D57;
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid #DED7CC;
+  border-radius: 50%;
+  background: #F7F4ED;
+  color: #292824;
+  font-size: 27px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modalCta {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 28px;
+  padding: 14px 25px;
+  border-radius: 2px;
+  background: #292824;
+  color: #F7F4ED;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.modalCta:hover {
+  background: #927344;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+
+@media (max-width: 1000px) {
+  .servicesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .services {
+    padding: 75px 6%;
+  }
+
+  .sectionHeader {
+    margin-bottom: 35px;
+  }
+
+  .servicesGrid {
+    gap: 14px;
+  }
+
+  .cardContent {
+    padding: 16px 13px 18px;
+  }
+
+  .cardContent h3 {
+    font-size: 16px;
+  }
+
+  .cardContent p {
+    min-height: 65px;
+    font-size: 12px;
+  }
+
+  .learnMore {
+    font-size: 11px;
+  }
+
+  .modalOverlay {
+    padding: 15px;
+  }
+
+  .modal {
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+  }
+
+  .modalImage {
+    min-height: 230px;
+    max-height: 270px;
+  }
+
+  .modalContent {
+    padding: 30px 25px;
+  }
+
+  .modalContent h2 {
+    font-size: 27px;
+  }
+
+  .modalCta {
+    align-self: stretch;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serviceCard,
+  .serviceImage,
+  .modalCta {
+    transition: none;
+  }
+
+  .modalOverlay,
+  .modal {
+    animation: none;
+  }
+}
