@@ -109,6 +109,7 @@
   min-height: 480px;
   overflow: hidden;
   background: var(--color-surface-secondary);
+  border-radius: 40px;
 }
 
 .featureImage {
@@ -276,7 +277,7 @@
 /* SEÇÕES */
 
 .section {
-  padding: 90px 0;
+  padding: 20px 0;
 }
 
 .sectionAlternate {
@@ -304,7 +305,7 @@
   }
 
   .section {
-    padding: 64px 0;
+    padding: 20px 0;
   }
 
   .section h2 {

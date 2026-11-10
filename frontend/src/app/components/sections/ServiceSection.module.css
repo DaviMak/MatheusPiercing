@@ -7,6 +7,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  
 }
 
 .sectionHeader {
@@ -49,7 +50,7 @@
   padding: 0;
   overflow: hidden;
   border: 1px solid #DED7CC;
-  border-radius: 4px;
+  border-radius: 10px;
   background: #FCFAF6;
   color: inherit;
   text-align: left;
@@ -236,7 +237,8 @@
 
 @media (max-width: 600px) {
   .services {
-    padding: 75px 6%;
+    padding: 70px 6%;
+    border-radius: 20px;
   }
 
   .sectionHeader {

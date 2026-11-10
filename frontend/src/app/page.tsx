@@ -169,7 +169,6 @@ export default function Home() {
         className={`${styles.section} ${styles.sectionAlternate}`}
       >
         <div className="container">
-          <h2>Nossos serviços</h2>
           <ServiceSection />
         </div>
       </section>
