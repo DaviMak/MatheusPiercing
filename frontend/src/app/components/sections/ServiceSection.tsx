@@ -21,7 +21,7 @@ const services: Service[] = [
     description: "Perfurações que valorizam seu estilo e sua identidade.",
     details:
       "Cada perfuração é planejada considerando a anatomia da região, o estilo e as preferências de cada pessoa. O objetivo é criar uma composição harmônica, com atenção à técnica, à segurança e à qualidade das joias.",
-    image: "/imagens/piercing.jpg",
+    image: "/MatheusPiercing/imagens/piercing.jpg",
     imageAlt: "Composição de piercings com joias delicadas",
     imageposition: "center center",
   },
@@ -31,7 +31,7 @@ const services: Service[] = [
     description: "Uma joia diferenciada para expressar sua personalidade.",
     details:
       "O microdermal é uma modalidade de piercing em que a joia fica posicionada na superfície da pele. A escolha da região e a avaliação individual são importantes para o planejamento do procedimento.",
-    image: "/imagens/micro.jpg",
+    image: "/MatheusPiercing/imagens/micro.jpg",
     imageAlt: "Joia de microdermal aplicada na pele",
     imageposition: "center center",
   },
@@ -41,7 +41,7 @@ const services: Service[] = [
     description: "Perfurações superficiais com diferentes possibilidades estéticas.",
     details:
       "O piercing surface é realizado em regiões superficiais do corpo, permitindo diferentes propostas de composição. Cada caso precisa ser avaliado individualmente para considerar a anatomia e a viabilidade da perfuração.",
-    image: "/imagens/surface.jpg",
+    image: "/MatheusPiercing/imagens/surface.jpg",
     imageAlt: "Piercing surface com joia delicada",
     imageposition: "center center",
   },
@@ -51,7 +51,7 @@ const services: Service[] = [
     description: "Renove sua composição com joias que combinam com você.",
     details:
       "A troca de joias permite renovar a aparência do seu piercing e explorar novas combinações. A substituição deve respeitar o estágio de cicatrização e as condições de cada perfuração.",
-    image: "/imagens/joias.jpg",
+    image: "/MatheusPiercing/imagens/joias.jpg",
     imageAlt: "Joias para composição de piercings",
     imageposition: "center center",
   },
