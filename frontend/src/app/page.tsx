@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import ServiceSection from "@/app/components/sections/ServiceSection";
 
+
 export default function Home() {
   return ( <>
     <main>
@@ -14,7 +15,7 @@ export default function Home() {
         <div className={`container ${styles.headerContent}`}>
           <a href="/" className={styles.brand}>
             <Image
-              src="/frontend/imagens/logo.png"
+              src="/imagens/logo.png"
               alt="Matheus Cruz Piercing Studio"
               width={600}
               height={180}
@@ -82,9 +83,9 @@ export default function Home() {
             </span>
           </div>
 
-          <div className={styles.heroImage}>
+          <div id="heroImage" className={styles.heroImage}>
             <Image
-              src="/frontend/imagens/joias.jpg"
+              src="/imagens/joias-9.jpeg"
               alt="Detalhe de uma joia para piercing"
               fill
               priority
@@ -95,6 +96,12 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="galeria" className={styles.section}>
+        <div className="container">
+          <h2>Galeria</h2>
+        </div>
+      </section>
+
       
       <section id="sobre" className={styles.about}>
         <div className={`container ${styles.aboutContent}`}>
@@ -102,7 +109,7 @@ export default function Home() {
           <div className={styles.aboutImage}>
             <div className={styles.aboutImage}>
               <Image
-                src="/frontend/imagens/matheuscruz.jpeg"
+                src="/imagens/matheuscruz.jpeg"
                 alt="Matheus Cruz, profissional de piercing"
                 fill
                 priority
@@ -173,11 +180,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="galeria" className={styles.section}>
-        <div className="container">
-          <h2>Galeria</h2>
-        </div>
-      </section>
+
 
       <section
         id="estudio"

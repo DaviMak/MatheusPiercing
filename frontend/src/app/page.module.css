@@ -525,5 +525,8 @@
   .aboutStats {
     gap: 30px;
   }
+  .heroImage {
+    display: none;
+  }
 }
 

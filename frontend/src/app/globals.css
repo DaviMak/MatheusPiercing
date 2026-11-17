@@ -54,7 +54,7 @@ img {
 .container {
   width: min(
     var(--container-width),
-    calc(100% - 48px)
+    calc(105% - 48px)
   );
   margin-inline: auto;
 }
