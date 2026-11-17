@@ -15,7 +15,7 @@ export default function Home() {
         <div className={`container ${styles.headerContent}`}>
           <a href="/" className={styles.brand}>
             <Image
-              src="/imagens/logo.png"
+              src="imagens/logo.png"
               alt="Matheus Cruz Piercing Studio"
               width={600}
               height={180}
@@ -85,7 +85,7 @@ export default function Home() {
 
           <div id="heroImage" className={styles.heroImage}>
             <Image
-              src="/imagens/joias-9.jpeg"
+              src="imagens/joias-9.jpeg"
               alt="Detalhe de uma joia para piercing"
               fill
               priority
