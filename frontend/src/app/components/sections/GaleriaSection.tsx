@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -23,12 +22,14 @@ type GalleryImage = {
   alt: string;
 };
 
+const BASE_PATH = process.env.NODE_ENV === "production" ? "/MatheusPiercing" : "";
+
 function createImages(
   files: string[],
   category: GalleryImage["category"]
 ): GalleryImage[] {
   return files.map((file) => ({
-    src: `/imagens/${file}`,
+    src: `${BASE_PATH}/imagens/${file}`,
     category,
     alt: `${category} realizado por Matheus Cruz`,
   }));
