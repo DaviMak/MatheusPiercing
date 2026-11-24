@@ -2,6 +2,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import ServiceSection from "@/app/components/sections/ServiceSection";
+import GaleriaSection from "@/app/components/sections/GaleriaSection";
 
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
         <div className={`container ${styles.headerContent}`}>
           <a href="/" className={styles.brand}>
             <Image
-              src="imagens/logo.PNG"
+              src="imagens/logonova.png"
               alt="Matheus Cruz Piercing Studio"
               width={600}
               height={180}
@@ -95,6 +96,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <GaleriaSection />
 
       <section id="galeria" className={styles.section}>
         <div className="container">

@@ -166,6 +166,8 @@
 @media (max-width: 600px) {
   .headerContent {
     gap: 20px;
+    display: flex;
+    justify-content: space-around;
   }
 
   .logo {
