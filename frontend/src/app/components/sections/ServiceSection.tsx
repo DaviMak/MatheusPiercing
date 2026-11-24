@@ -4,14 +4,18 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./ServiceSection.module.css";
 
+type ServiceImage = {
+  src: string;
+  alt: string;
+  position?: string;
+};
+
 type Service = {
   id: number;
   title: string;
   description: string;
   details: string;
-  image: string;
-  imageAlt: string;
-  imageposition?: string;
+  images: ServiceImage[];
 };
 
 const services: Service[] = [
@@ -21,9 +25,20 @@ const services: Service[] = [
     description: "Perfurações que valorizam seu estilo e sua identidade.",
     details:
       "Cada perfuração é planejada considerando a anatomia da região, o estilo e as preferências de cada pessoa. O objetivo é criar uma composição harmônica, com atenção à técnica, à segurança e à qualidade das joias.",
-    image: "imagens/PA-14.jpeg",
-    imageAlt: "Composição de piercings com joias delicadas",
-    imageposition: "center center",
+    images: [
+      {
+        src: "/imagens/PA-14.jpeg",
+        alt: "Composição de piercings na orelha",
+      },
+      {
+        src: "/imagens/PA-15.jpeg",
+        alt: "Projeto auricular com diferentes joias",
+      },
+      {
+        src: "/imagens/PA-16.jpeg",
+        alt: "Composição de piercings com joias delicadas",
+      },
+    ],
   },
   {
     id: 2,
@@ -31,9 +46,20 @@ const services: Service[] = [
     description: "Uma joia diferenciada para expressar sua personalidade.",
     details:
       "O microdermal é uma modalidade de piercing em que a joia fica posicionada na superfície da pele. A escolha da região e a avaliação individual são importantes para o planejamento do procedimento.",
-    image: "imagens/micro-3.jpg",
-    imageAlt: "Joia de microdermal aplicada na pele",
-    imageposition: "center center",
+    images: [
+      {
+        src: "/imagens/micro-3.jpg",
+        alt: "Joia de microdermal aplicada na pele",
+      },
+      {
+        src: "/imagens/micro-1.jpeg",
+        alt: "Exemplo de aplicação de microdermal",
+      },
+      {
+        src: "/imagens/micro-2.jpeg",
+        alt: "Detalhe de piercing microdermal",
+      },
+    ],
   },
   {
     id: 3,
@@ -41,9 +67,20 @@ const services: Service[] = [
     description: "Perfurações superficiais com diferentes possibilidades estéticas.",
     details:
       "O piercing surface é realizado em regiões superficiais do corpo, permitindo diferentes propostas de composição. Cada caso precisa ser avaliado individualmente para considerar a anatomia e a viabilidade da perfuração.",
-    image: "imagens/surface-1.jpeg",
-    imageAlt: "Piercing surface com joia delicada",
-    imageposition: "center center",
+    images: [
+      {
+        src: "/imagens/surface-1.jpeg",
+        alt: "Piercing surface com joia delicada",
+      },
+      {
+        src: "/imagens/surface-2.jpeg",
+        alt: "Exemplo de piercing surface",
+      },
+      {
+        src: "/imagens/surface-3.jpeg",
+        alt: "Detalhe de uma aplicação surface",
+      },
+    ],
   },
   {
     id: 4,
@@ -51,33 +88,59 @@ const services: Service[] = [
     description: "Renove sua composição com joias que combinam com você.",
     details:
       "A troca de joias permite renovar a aparência do seu piercing e explorar novas combinações. A substituição deve respeitar o estágio de cicatrização e as condições de cada perfuração.",
-    image: "imagens/joias-11.jpg",
-    imageAlt: "Joias para composição de piercings",
-    imageposition: "center center",
+    images: [
+      {
+        src: "/imagens/joias-11.jpg",
+        alt: "Seleção de joias para piercings",
+      },
+      {
+        src: "/imagens/Joias-10.jpeg",
+        alt: "Detalhes de joias para piercing",
+      },
+      {
+        src: "/imagens/joias-7.jpeg",
+        alt: "Opções de joias para composição",
+      },
+    ],
   },
 ];
 
 export default function ServicesSection() {
-  const [selectedService, setSelectedService] =
-    useState<Service | null>(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   useEffect(() => {
     if (!selectedService) return;
 
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setSelectedService(null);
-      }
-    }
-
-    document.addEventListener("keydown", handleKeyDown);
+    const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [selectedService]);
+
+  function openService(service: Service) {
+    setActiveImageIndex(0);
+    setSelectedService(service);
+  }
+
+  function closeModal() {
+    setSelectedService(null);
+    setActiveImageIndex(0);
+  }
+
+  function changeImage(direction: number) {
+    if (!selectedService) return;
+
+    const totalImages = selectedService.images.length;
+
+    setActiveImageIndex((currentIndex) => {
+      return (currentIndex + direction + totalImages) % totalImages;
+    });
+  }
+
+  const currentImage = selectedService?.images[activeImageIndex];
 
   return (
     <section id="servicos" className={styles.services}>
@@ -99,17 +162,19 @@ export default function ServicesSection() {
               key={service.id}
               type="button"
               className={styles.serviceCard}
-              onClick={() => setSelectedService(service)}
+              onClick={() => openService(service)}
               aria-label={`Conheça mais sobre ${service.title}`}
             >
               <div className={styles.imageWrapper}>
                 <Image
-                style={{ objectPosition: service.imageposition }}
-                  src={service.image}
-                  alt={service.imageAlt}
+                  src={service.images[0].src}
+                  alt={service.images[0].alt}
                   fill
                   sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"
                   className={styles.serviceImage}
+                  style={{
+                    objectPosition: service.images[0].position ?? "center",
+                  }}
                 />
               </div>
 
@@ -126,11 +191,8 @@ export default function ServicesSection() {
         </div>
       </div>
 
-      {selectedService && (
-        <div
-          className={styles.modalOverlay}
-          onClick={() => setSelectedService(null)}
-        >
+      {selectedService && currentImage && (
+        <div className={styles.modalOverlay} onClick={closeModal}>
           <div
             className={styles.modal}
             role="dialog"
@@ -141,7 +203,7 @@ export default function ServicesSection() {
             <button
               type="button"
               className={styles.closeButton}
-              onClick={() => setSelectedService(null)}
+              onClick={closeModal}
               aria-label="Fechar janela"
             >
               &times;
@@ -149,29 +211,62 @@ export default function ServicesSection() {
 
             <div className={styles.modalImage}>
               <Image
-                src={selectedService.image}
-                alt={selectedService.imageAlt}
+                key={currentImage.src}
+                src={currentImage.src}
+                alt={currentImage.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className={styles.serviceImage}
+                style={{
+                  objectPosition: currentImage.position ?? "center",
+                }}
               />
+
+              {selectedService.images.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className={`${styles.imageArrow} ${styles.imageArrowLeft}`}
+                    onClick={() => changeImage(-1)}
+                    aria-label="Fotografia anterior"
+                  >
+                    <i className="fas fa-chevron-left" aria-hidden="true" />
+                  </button>
+
+                  <button
+                    type="button"
+                    className={`${styles.imageArrow} ${styles.imageArrowRight}`}
+                    onClick={() => changeImage(1)}
+                    aria-label="Próxima fotografia"
+                  >
+                    <i className="fas fa-chevron-right" aria-hidden="true" />
+                  </button>
+
+                  <span className={styles.imageIndicator}>
+                    {activeImageIndex + 1} / {selectedService.images.length}
+                  </span>
+                </>
+              )}
             </div>
 
             <div className={styles.modalContent}>
-              <span className={styles.eyebrow}>MATHEUS CRUZ PIERCING STUDIO</span>
+              <span className={styles.eyebrow}>
+                MATHEUS CRUZ PIERCING STUDIO
+              </span>
 
-              <h2 id="service-modal-title">
-                {selectedService.title}
-              </h2>
+              <h2 id="service-modal-title">{selectedService.title}</h2>
 
               <p>{selectedService.details}</p>
 
               <p className={styles.followUp}>
-                O atendimento também conta com acompanhamento gratuito
-                no pós-perfuração.
+                O atendimento também conta com acompanhamento gratuito no
+                pós-perfuração.
               </p>
 
-              <a href="#contato" className={styles.modalCta}>
+              <a
+                href="https://wa.me/5545991151808"
+                className={styles.modalCta}
+              >
                 Agendar atendimento
               </a>
             </div>

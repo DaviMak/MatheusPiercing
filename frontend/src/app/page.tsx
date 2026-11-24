@@ -65,7 +65,7 @@ export default function Home() {
 
             <div className={styles.heroActions}>
               <a
-                href="#contato"
+                href="https://wa.me/5545991151808"
                 className={styles.heroButton}
               >
                 Agendar pelo WhatsApp
@@ -98,13 +98,6 @@ export default function Home() {
       </section>
 
       <GaleriaSection />
-
-      <section id="galeria" className={styles.section}>
-        <div className="container">
-          <h2>Galeria</h2>
-        </div>
-      </section>
-
       
       <section id="sobre" className={styles.about}>
         <div className={`container ${styles.aboutContent}`}>
@@ -236,7 +229,7 @@ export default function Home() {
               <a href="https://www.instagram.com/matheus.piercing?vrfl=bzE5aDZ6MWU3NTJl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="https://www.tiktok.com/@matheus.piercing" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+              <a href="https://www.tiktok.com/@matheus_piercing?_r=1&_t=ZS-9BbxUfK0Ndd" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                 <i className="fab fa-tiktok"></i>
               </a>
               <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
