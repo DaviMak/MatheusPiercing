@@ -22,7 +22,7 @@ type GalleryImage = {
   alt: string;
 };
 
-const BASE_PATH = process.env.NODE_ENV === "production" ? "/MatheusPiercing" : "";
+export const BASE_PATH = process.env.NODE_ENV === "production" ? "/MatheusPiercing" : "";
 
 function createImages(
   files: string[],

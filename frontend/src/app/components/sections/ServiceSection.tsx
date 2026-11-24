@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./ServiceSection.module.css";
 
+import { BASE_PATH } from "./GaleriaSection";
+
 type ServiceImage = {
   src: string;
   alt: string;
@@ -27,15 +29,15 @@ const services: Service[] = [
       "Cada perfuração é planejada considerando a anatomia da região, o estilo e as preferências de cada pessoa. O objetivo é criar uma composição harmônica, com atenção à técnica, à segurança e à qualidade das joias.",
     images: [
       {
-        src: "/imagens/PA-14.jpeg",
+        src: `${BASE_PATH}/imagens/PA-1.jpeg`,
         alt: "Composição de piercings na orelha",
       },
       {
-        src: "/imagens/PA-15.jpeg",
+        src: `${BASE_PATH}/imagens/PA-15.jpeg`,
         alt: "Projeto auricular com diferentes joias",
       },
       {
-        src: "/imagens/PA-16.jpeg",
+        src: `${BASE_PATH}/imagens/PA-16.jpeg`,
         alt: "Composição de piercings com joias delicadas",
       },
     ],
@@ -48,15 +50,15 @@ const services: Service[] = [
       "O microdermal é uma modalidade de piercing em que a joia fica posicionada na superfície da pele. A escolha da região e a avaliação individual são importantes para o planejamento do procedimento.",
     images: [
       {
-        src: "/imagens/micro-3.jpg",
+        src: `${BASE_PATH}/imagens/micro-3.jpg`,
         alt: "Joia de microdermal aplicada na pele",
       },
       {
-        src: "/imagens/micro-1.jpeg",
+        src: `${BASE_PATH}/imagens/micro-1.jpeg`,
         alt: "Exemplo de aplicação de microdermal",
       },
       {
-        src: "/imagens/micro-2.jpeg",
+        src: `${BASE_PATH}/imagens/micro-2.jpeg`,
         alt: "Detalhe de piercing microdermal",
       },
     ],
@@ -69,15 +71,15 @@ const services: Service[] = [
       "O piercing surface é realizado em regiões superficiais do corpo, permitindo diferentes propostas de composição. Cada caso precisa ser avaliado individualmente para considerar a anatomia e a viabilidade da perfuração.",
     images: [
       {
-        src: "/imagens/surface-1.jpeg",
+        src: `${BASE_PATH}/imagens/surface-1.jpeg`,
         alt: "Piercing surface com joia delicada",
       },
       {
-        src: "/imagens/surface-2.jpeg",
+        src: `${BASE_PATH}/imagens/surface-2.jpeg`,
         alt: "Exemplo de piercing surface",
       },
       {
-        src: "/imagens/surface-3.jpeg",
+        src: `${BASE_PATH}/imagens/surface-3.jpeg`,
         alt: "Detalhe de uma aplicação surface",
       },
     ],
@@ -90,15 +92,15 @@ const services: Service[] = [
       "A troca de joias permite renovar a aparência do seu piercing e explorar novas combinações. A substituição deve respeitar o estágio de cicatrização e as condições de cada perfuração.",
     images: [
       {
-        src: "/imagens/joias-11.jpg",
+        src: `${BASE_PATH}/imagens/joias-11.jpg`,
         alt: "Seleção de joias para piercings",
       },
       {
-        src: "/imagens/Joias-10.jpeg",
+        src: `${BASE_PATH}/imagens/Joias-10.jpeg`,
         alt: "Detalhes de joias para piercing",
       },
       {
-        src: "/imagens/joias-7.jpeg",
+        src: `${BASE_PATH}/imagens/joias-7.jpeg`,
         alt: "Opções de joias para composição",
       },
     ],
