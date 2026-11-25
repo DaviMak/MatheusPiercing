@@ -45,11 +45,10 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 
-.filterButton,
-.activeFilter {
+.filterButton {
   padding: 9px 16px;
   border: 1px solid #DED7CC;
   border-radius: 30px;
@@ -57,7 +56,18 @@
   color: #77736C;
   font-size: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.activeFilter {
+  padding: 9px 16px;
+  border: 1px solid #292824;
+  border-radius: 30px;
+  background: #292824;
+  color: #F7F4ED;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .filterButton:hover {
@@ -65,96 +75,110 @@
   color: #292824;
 }
 
-.activeFilter {
-  border-color: #292824;
-  background: #292824;
-  color: #F7F4ED;
+.activeFilter:hover {
+  border-color: #927344;
+  background: #927344;
+  color: #FFFFFF;
 }
 
-/* Grade de fotografias */
-
-.galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.galleryItem {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  padding: 0;
-  overflow: hidden;
-  border: none;
-  border-radius: 4px;
-  background: #E9E0D3;
-  cursor: pointer;
-}
-
-.galleryImage {
-  object-fit: cover;
-  transition: transform 0.45s ease;
-}
-
-.galleryItem:hover .galleryImage {
-  transform: scale(1.06);
-}
-
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: rgba(41, 40, 36, 0.38);
-  color: white;
-  font-size: 13px;
-  letter-spacing: 0.5px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.galleryItem:hover .imageOverlay,
-.galleryItem:focus-visible .imageOverlay {
-  opacity: 1;
-}
-
-.galleryItem:focus-visible,
-.filterButton:focus-visible,
-.activeFilter:focus-visible,
-.moreButton:focus-visible,
-.contactButton:focus-visible {
+.filterButton:focus-visible {
   outline: 2px solid #927344;
   outline-offset: 4px;
 }
 
-/* Botão ver mais */
-
-.moreContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 35px;
+.activeFilter:focus-visible {
+  outline: 2px solid #927344;
+  outline-offset: 4px;
 }
 
-.moreButton {
-  padding: 13px 30px;
-  border: 1px solid #927344;
-  border-radius: 2px;
-  background: transparent;
-  color: #292824;
+/* Carrossel */
+
+.carousel {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.carouselStage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #E9E0D3;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.carouselImage {
+  object-fit: contain;
+}
+
+.navigationButton {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  transform: translateY(-50%);
+  border: 1px solid #FFFFFF73;
+  border-radius: 50%;
+  background: #19181659;
+  color: #F7F4ED;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navigationButton:hover {
+  background: #191816B3;
+  color: #FFFFFF;
+}
+
+.navigationButton:focus-visible {
+  outline: 2px solid #927344;
+  outline-offset: 4px;
+}
+
+.previousButton {
+  left: 15px;
+}
+
+.nextButton {
+  right: 15px;
+}
+
+.imageIndicator {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: 7px 14px;
+  border-radius: 20px;
+  background: #191816A6;
+  color: #FFFFFF;
   font-size: 12px;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+.carouselCaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 14px 2px 0;
+  color: #77736C;
+  font-size: 12px;
+}
+
+.carouselCaption span:first-child {
+  color: #927344;
   font-weight: 600;
   letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.moreButton:hover {
-  background: #292824;
-  border-color: #292824;
-  color: #F7F4ED;
 }
 
 /* Rodapé da galeria */
@@ -190,175 +214,144 @@
   background: #927344;
 }
 
-/* Visualização ampliada */
-
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 1100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 80px;
-  background: rgba(15, 14, 13, 0.94);
-  animation: fadeIn 0.2s ease;
-}
-
-.lightboxContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  gap: 15px;
-}
-
-.lightboxImage {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-}
-
-.lightboxPhoto {
-  object-fit: contain;
-}
-
-.lightboxContent p {
-  flex-shrink: 0;
-  color: #F7F4ED;
-  font-size: 12px;
-  letter-spacing: 0.5px;
-}
-
-.closeButton,
-.navigationButton {
-  position: absolute;
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  color: white;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.closeButton:hover,
-.navigationButton:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.closeButton {
-  top: 25px;
-  right: 30px;
-  width: 42px;
-  height: 42px;
-  font-size: 28px;
-}
-
-.navigationButton {
-  top: 50%;
-  width: 45px;
-  height: 45px;
-  font-size: 32px;
-  transform: translateY(-50%);
-}
-
-.previousButton {
-  left: 20px;
-}
-
-.nextButton {
-  right: 20px;
-}
-
-.closeButton:focus-visible,
-.navigationButton:focus-visible {
-  outline: 2px solid #F7F4ED;
+.contactButton:focus-visible {
+  outline: 2px solid #927344;
   outline-offset: 4px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+/* Desktop */
 
-/* Responsividade */
+@media (min-width: 1200px) {
+  .gallery {
+    padding: 105px 0 110px;
+  }
 
-@media (max-width: 1000px) {
-  .galleryGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .header {
+    margin-bottom: 45px;
+  }
+
+  .filters {
+    margin-bottom: 45px;
+  }
+
+  .carousel {
+    max-width: 760px;
+  }
+
+  .navigationButton {
+    width: 50px;
+    height: 50px;
+  }
+
+  .previousButton {
+    left: 20px;
+  }
+
+  .nextButton {
+    right: 20px;
+  }
+
+  .carouselCaption {
+    padding-top: 17px;
   }
 }
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .carousel {
+    max-width: 680px;
+  }
+
+  .filters {
+    gap: 8px;
+  }
+}
+
+/* Mobile */
 
 @media (max-width: 650px) {
   .gallery {
     padding: 10px 0 80px;
   }
 
-  .galleryGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+  .container {
+    width: calc(100% - 30px);
+  }
+
+  .header {
+    margin-bottom: 30px;
   }
 
   .filters {
     justify-content: flex-start;
     flex-wrap: nowrap;
     overflow-x: auto;
+    margin-bottom: 25px;
     padding: 5px 2px 12px;
     scrollbar-width: thin;
   }
 
-  .filterButton,
+  .filterButton {
+    flex-shrink: 0;
+  }
+
   .activeFilter {
     flex-shrink: 0;
   }
 
-  .imageOverlay {
-    display: none;
+  .carousel {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .carouselStage {
+    aspect-ratio: 4 / 5;
+  }
+
+  .navigationButton {
+    width: 38px;
+    height: 38px;
+    font-size: 27px;
+  }
+
+  .previousButton {
+    left: 10px;
+  }
+
+  .nextButton {
+    right: 10px;
+  }
+
+  .imageIndicator {
+    bottom: 12px;
+  }
+
+  .carouselCaption {
+    font-size: 11px;
   }
 
   .galleryFooter {
     margin-top: 45px;
   }
-
-  .lightbox {
-    padding: 65px 15px;
-  }
-
-  .closeButton {
-    top: 15px;
-    right: 15px;
-  }
-
-  .navigationButton {
-    width: 36px;
-    height: 36px;
-    font-size: 26px;
-  }
-
-  .previousButton {
-    left: 8px;
-  }
-
-  .nextButton {
-    right: 8px;
-  }
 }
 
+/* Acessibilidade */
+
 @media (prefers-reduced-motion: reduce) {
-  .galleryImage,
-  .filterButton,
-  .activeFilter,
-  .moreButton,
-  .contactButton,
-  .imageOverlay {
+  .filterButton {
     transition: none;
   }
 
-  .lightbox {
-    animation: none;
+  .activeFilter {
+    transition: none;
+  }
+
+  .contactButton {
+    transition: none;
+  }
+
+  .navigationButton {
+    transition: none;
   }
 }

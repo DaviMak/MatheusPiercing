@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import styles from "./GaleriaSection.module.css";
 
@@ -22,7 +22,8 @@ type GalleryImage = {
   alt: string;
 };
 
-export const BASE_PATH = process.env.NODE_ENV === "production" ? "/MatheusPiercing" : "";
+export const BASE_PATH =
+  process.env.NODE_ENV === "production" ? "/MatheusPiercing" : "";
 
 function createImages(
   files: string[],
@@ -93,22 +94,12 @@ const galleryImages: GalleryImage[] = [
     "Umbigo"
   ),
 
-  ...createImages(
-    ["sombrancelha-1.jpeg"],
-    "Sobrancelha"
-  ),
+  ...createImages(["sombrancelha-1.jpeg"], "Sobrancelha"),
+
+  ...createImages(["nariz-1.jpeg"], "Nariz"),
 
   ...createImages(
-    ["nariz-1.jpeg"],
-    "Nariz"
-  ),
-
-  ...createImages(
-    [
-      "antesdepois-1.jpeg",
-      "antesdepois-2.jpeg",
-      "antesdepois-3.jpeg",
-    ],
+    ["antesdepois-1.jpeg", "antesdepois-2.jpeg", "antesdepois-3.jpeg"],
     "Antes e depois"
   ),
 ];
@@ -130,10 +121,9 @@ export default function GaleriaSection() {
   const [selectedCategory, setSelectedCategory] =
     useState<Category>("Todos");
 
-  const [showAll, setShowAll] = useState(false);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const [activeImageIndex, setActiveImageIndex] =
-    useState<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const filteredImages =
     selectedCategory === "Todos"
@@ -142,57 +132,44 @@ export default function GaleriaSection() {
           (image) => image.category === selectedCategory
         );
 
-  const visibleImages = showAll
-    ? filteredImages
-    : filteredImages.slice(0, 12);
-
-  useEffect(() => {
-    if (activeImageIndex === null) return;
-
-    function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setActiveImageIndex(null);
-      }
-
-      if (event.key === "ArrowRight") {
-        setActiveImageIndex((current) =>
-          current === null
-            ? null
-            : (current + 1) % filteredImages.length
-        );
-      }
-
-      if (event.key === "ArrowLeft") {
-        setActiveImageIndex((current) =>
-          current === null
-            ? null
-            : (current - 1 + filteredImages.length) %
-              filteredImages.length
-        );
-      }
-    }
-
-    document.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [activeImageIndex, filteredImages.length]);
+  const currentImage = filteredImages[activeImageIndex];
 
   function changeCategory(category: Category) {
     setSelectedCategory(category);
-    setShowAll(false);
+    setActiveImageIndex(0);
+  }
+
+  function changeImage(direction: number) {
+    setActiveImageIndex((currentIndex) => {
+      return (
+        (currentIndex + direction + filteredImages.length) %
+        filteredImages.length
+      );
+    });
+  }
+
+  function handleTouchStart(event: React.TouchEvent<HTMLDivElement>) {
+    touchStartX.current = event.touches[0].clientX;
+  }
+
+  function handleTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
+    if (touchStartX.current === null) return;
+
+    const touchEndX = event.changedTouches[0].clientX;
+    const difference = touchStartX.current - touchEndX;
+
+    if (Math.abs(difference) > 45) {
+      changeImage(difference > 0 ? 1 : -1);
+    }
+
+    touchStartX.current = null;
   }
 
   return (
     <section id="galeria" className={styles.gallery}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <span className={styles.eyebrow}>
-            PORTFÓLIO
-          </span>
+          <span className={styles.eyebrow}>PORTFÓLIO</span>
 
           <h2>Conheça nosso trabalho</h2>
 
@@ -223,39 +200,56 @@ export default function GaleriaSection() {
           ))}
         </nav>
 
-        <div className={styles.galleryGrid}>
-          {visibleImages.map((image, index) => (
-            <button
-              key={image.src}
-              type="button"
-              className={styles.galleryItem}
-              onClick={() => setActiveImageIndex(index)}
-              aria-label={`Ampliar fotografia: ${image.alt}`}
+        {currentImage && (
+          <div className={styles.carousel}>
+            <div
+              className={styles.carouselStage}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
             >
               <Image
-                src={image.src}
-                alt={image.alt}
+                key={currentImage.src}
+                src={currentImage.src}
+                alt={currentImage.alt}
                 fill
-                sizes="(max-width: 600px) 50vw, (max-width: 1000px) 33vw, 25vw"
-                className={styles.galleryImage}
+                priority={activeImageIndex === 0}
+                sizes="(max-width: 650px) 100vw, (max-width: 1000px) 85vw, 680px"
+                className={styles.carouselImage}
               />
 
-              <span className={styles.imageOverlay}>
-                Ampliar <span aria-hidden="true">↗</span>
-              </span>
-            </button>
-          ))}
-        </div>
+              {filteredImages.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className={`${styles.navigationButton} ${styles.previousButton}`}
+                    onClick={() => changeImage(-1)}
+                    aria-label="Fotografia anterior"
+                  >
+                    &#8249;
+                  </button>
 
-        {filteredImages.length > 12 && (
-          <div className={styles.moreContainer}>
-            <button
-              type="button"
-              className={styles.moreButton}
-              onClick={() => setShowAll(!showAll)}
-            >
-              {showAll ? "Mostrar menos" : "Ver mais trabalhos"}
-            </button>
+                  <button
+                    type="button"
+                    className={`${styles.navigationButton} ${styles.nextButton}`}
+                    onClick={() => changeImage(1)}
+                    aria-label="Próxima fotografia"
+                  >
+                    &#8250;
+                  </button>
+                </>
+              )}
+
+              <span className={styles.imageIndicator}>
+                {activeImageIndex + 1} / {filteredImages.length}
+              </span>
+            </div>
+
+            <div className={styles.carouselCaption}>
+              <span>{currentImage.category}</span>
+              <span>
+                {activeImageIndex + 1} de {filteredImages.length} trabalhos
+              </span>
+            </div>
           </div>
         )}
 
@@ -265,77 +259,11 @@ export default function GaleriaSection() {
             composição.
           </p>
 
-          <a href="#contato" className={styles.contactButton}>
+          <a href="https://wa.me/5545991151808" className={styles.contactButton}>
             Agendar atendimento
           </a>
         </div>
       </div>
-
-      {activeImageIndex !== null && (
-        <div
-          className={styles.lightbox}
-          onClick={() => setActiveImageIndex(null)}
-        >
-          <button
-            type="button"
-            className={styles.closeButton}
-            onClick={() => setActiveImageIndex(null)}
-            aria-label="Fechar fotografia"
-          >
-            &times;
-          </button>
-
-          <button
-            type="button"
-            className={`${styles.navigationButton} ${styles.previousButton}`}
-            onClick={(event) => {
-              event.stopPropagation();
-              setActiveImageIndex(
-                (activeImageIndex - 1 + filteredImages.length) %
-                  filteredImages.length
-              );
-            }}
-            aria-label="Fotografia anterior"
-          >
-            &#8249;
-          </button>
-
-          <div
-            className={styles.lightboxContent}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className={styles.lightboxImage}>
-              <Image
-                src={filteredImages[activeImageIndex].src}
-                alt={filteredImages[activeImageIndex].alt}
-                fill
-                sizes="90vw"
-                className={styles.lightboxPhoto}
-              />
-            </div>
-
-            <p>
-              {filteredImages[activeImageIndex].category}
-              {" · "}
-              {activeImageIndex + 1} de {filteredImages.length}
-            </p>
-          </div>
-
-          <button
-            type="button"
-            className={`${styles.navigationButton} ${styles.nextButton}`}
-            onClick={(event) => {
-              event.stopPropagation();
-              setActiveImageIndex(
-                (activeImageIndex + 1) % filteredImages.length
-              );
-            }}
-            aria-label="Próxima fotografia"
-          >
-            &#8250;
-          </button>
-        </div>
-      )}
     </section>
   );
 }
