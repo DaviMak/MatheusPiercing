@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import ServiceSection from "@/app/components/sections/ServiceSection";
 import GaleriaSection from "@/app/components/sections/GaleriaSection";
+import VisagismoSection from "@/app/components/sections/VisagismoSection";
 
 
 export default function Home() {
@@ -165,6 +166,10 @@ export default function Home() {
 
         </div>
       </section>
+
+      
+        <VisagismoSection />
+      
 
 
       <section
